@@ -19,7 +19,8 @@
 			}
 		}
 		count++;
-
+		
+		// 기존에 있는 쿠키와 같은 name,path,domain의 쿠키를 생성하면 기존 쿠키의 value를 갱신한다. 
 		Cookie cookie = new Cookie("count", String.valueOf(count));
 		cookie.setMaxAge(60);
 		// 현재 http 요청에대한 응답에 cookie를 실어서 날림. 새로고침, 다른페이지에서 content.jsp로 접근시 cookie가 갱신됨.

@@ -21,7 +21,7 @@ public class HidePopupServlet extends HttpServlet {
 		Cookie cookie = new Cookie("hidePopup","true");
 		cookie.setMaxAge(10);
 		response.addCookie(cookie);
-		response.sendRedirect("cookiePopup.jsp");
+		
 	}
 
 }
