@@ -1,13 +1,13 @@
 package servlets;
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
-import java.io.IOException;
 
 /**
  * Servlet implementation class SignIn
@@ -18,16 +18,16 @@ public class LoginServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String savedId = "aaa";
-		
-		HttpSession session = request.getSession();
-		String userId = request.getParameter("user_id");
-		
-		if(userId.equals(savedId)) {
-			session.setAttribute("userId",userId);
-			response.sendRedirect("success.jsp");
-		}else {
-			response.sendRedirect("fail.jsp");
-		}
+		String id = request.getParameter("id");
+        String pw = request.getParameter("pw");
+
+        if (id.equals("a") && pw.equals("1111")) {
+            Cookie cookie = new Cookie("id", id);
+            cookie.setMaxAge(60 * 60);
+            response.addCookie(cookie);
+            response.sendRedirect("cookie.jsp");
+        } else {
+            response.sendRedirect("login.jsp");
+        }
 	}
 }
